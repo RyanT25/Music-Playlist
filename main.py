@@ -45,32 +45,52 @@ playlist = {
     },
 }
 
-#* Add options for the user (Add, View, Update, Delete)
-
-
 #* Add Song Function
 def add_song(title, artist, genre):
     playlist[title]={"Artist": artist, "Genre": genre}
-add_song(input("Enter Song Title: "), input("Enter Artist's Name: "), input("Enter Genre: "))
+    print(f"'{title}' - Has Been Added")
 
 #* View Playlist Function
 def view_playlist():
     for songs in playlist:
+        print("--------------------")
         print(songs)
         for artist, genre in playlist[songs].items():
             print(f"{artist}: {genre}")
-view_playlist()
 
 #* Update Song Function
 def update_song(title, new_artist, new_genre):
     if title in playlist:
         playlist[title]={"Artist": new_artist, "Genre": new_genre}
-update_song(input("Enter Song Title: "), input("Update Artist's Name: "), input("Update Genre: "))
 
 #* Delete Song Function
 def delete_song(title):
     if title in playlist:
         del playlist[title]
         print(f"'{title}' - Has Been Deleted")
-delete_song(input("Enter Song Title: "))
 
+#* Add options for the user (Add, View, Update, Delete)
+def options_menu():
+    while True:
+        print("\nMusic Playlist Options")
+        print("--------------------\n")
+        print("1. Add Song")
+        print("2. View Playlist")
+        print("3. Update Song")
+        print("4. Delete Song")
+
+        select=input("Select Option: ")
+
+        if select=="1":
+            print("\n--- 1. Add Song ---")
+            add_song(input("Enter Song Title: "), input("Enter Artist's Name: "), input("Enter Genre: "))
+        elif select=="2":
+            print("\n--- 2. View Playlist ---")
+            view_playlist()
+        elif select=="3":
+            print("\n--- 3. Update Song ---")
+            update_song(input("Enter Song Title: "), input("Update Artist's Name: "), input("Update Genre: "))
+        elif select=="4":
+            print("\n--- 4. Delete Song ---")
+            delete_song(input("Enter Song Title: "))
+options_menu()
