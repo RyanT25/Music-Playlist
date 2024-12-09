@@ -45,7 +45,8 @@ playlist = {
     },
 }
 
-#TODO - Add options for the user (Add, View, Update, Delete)
+#* Add options for the user (Add, View, Update, Delete)
+
 
 #* Add Song Function
 def add_song(title, artist, genre):
@@ -61,6 +62,15 @@ def view_playlist():
 view_playlist()
 
 #* Update Song Function
+def update_song(title, new_artist, new_genre):
+    if title in playlist:
+        playlist[title]={"Artist": new_artist, "Genre": new_genre}
+update_song(input("Enter Song Title: "), input("Update Artist's Name: "), input("Update Genre: "))
 
 #* Delete Song Function
+def delete_song(title):
+    if title in playlist:
+        del playlist[title]
+        print(f"'{title}' - Has Been Deleted")
+delete_song(input("Enter Song Title: "))
 
