@@ -62,12 +62,16 @@ def view_playlist():
 def update_song(title, new_artist, new_genre):
     if title in playlist:
         playlist[title]={"Artist": new_artist, "Genre": new_genre}
+    else:
+        print(f"{title} Cannot Be Found - Try Again")
 
 #* Delete Song Function
 def delete_song(title):
     if title in playlist:
         del playlist[title]
         print(f"'{title}' - Has Been Deleted")
+    else:
+        print(f"{title} Cannot Be Found - Try Again")
 
 #* Add options for the user (Add, View, Update, Delete)
 def options_menu():
@@ -79,8 +83,9 @@ def options_menu():
         print("3. Update Song")
         print("4. Delete Song")
 
-        select=input("Select Option: ")
+        select=input("Select Option 1/2/3/4: ")
 
+        #? Data Validation
         if select=="1":
             print("\n--- 1. Add Song ---")
             add_song(input("Enter Song Title: "), input("Enter Artist's Name: "), input("Enter Genre: "))
@@ -93,4 +98,7 @@ def options_menu():
         elif select=="4":
             print("\n--- 4. Delete Song ---")
             delete_song(input("Enter Song Title: "))
+            break
+        else:
+            print("Invalid Input - Please Select 1/2/3/4")
 options_menu()
